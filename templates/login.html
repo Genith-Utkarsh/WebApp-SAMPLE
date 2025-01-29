@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AutoCare - Welcome</title>
-    <!-- <link rel="stylesheet" href="styles.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"> -->
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
     <style>
         /* Auth Page Styles */
@@ -425,7 +425,7 @@
                 users.push(newUser);
                 localStorage.setItem('users', JSON.stringify(users));
                 localStorage.setItem('loggedInUser', JSON.stringify(newUser));
-                window.location.href = 'https://web-app-sample-liard.vercel.app/index.html';
+                window.location.href = 'index.html';
             });
 
             // Login Handler
@@ -449,14 +449,14 @@
                 }
 
                 localStorage.setItem('loggedInUser', JSON.stringify(user));
-                window.location.href = 'https://web-app-sample-liard.vercel.app/index.html';
+                window.location.href = 'index.html';
             });
 
             // Auto-redirect if already logged in
             window.addEventListener('load', () => {
                 const loggedInUser = localStorage.getItem('loggedInUser');
-                if (loggedInUser && window.location.pathname.endsWith('https://web-app-sample-liard.vercel.app/index.html')) {
-                    window.location.href = 'https://web-app-sample-liard.vercel.app/index.html';
+                if (loggedInUser && window.location.pathname.endsWith('index.html')) {
+                    window.location.href = 'index.html';
                 }
             });
 
