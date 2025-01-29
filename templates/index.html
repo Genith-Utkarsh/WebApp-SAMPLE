@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoCare Solutions</title>
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+     <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: #f8f9fa;
+            color: #2c3e50;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 8px 12px;
+            border-radius: 5px;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-right: 2rem;
+        }
+
+        .profile-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .profile {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #e74c3c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .profile:hover {
+            transform: scale(1.1);
+        }
+
+        /* Search Section */
+        .search-container {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+        }
+
+        .search-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            color: #2c3e50;
+        }
+
+        .search-row {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .car-selector {
+            padding: 1rem;
+            border: 2px solid #3498db;
+            border-radius: 15px;
+            background: white;
+            min-width: 250px;
+            font-size: 1rem;
+            color: #2c3e50;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 1em;
+        }
+
+        .search-input-container {
+            flex-grow: 1;
+            position: relative;
+        }
+
+        #searchInput {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #3498db;
+            border-radius: 15px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        #searchInput:focus {
+            outline: none;
+            box-shadow: 0 0 10px rgba(52,152,219,0.3);
+        }
+
+        #suggestions {
+            position: absolute;
+            width: 100%;
+            background: white;
+            border: 2px solid #3498db;
+            border-radius: 15px;
+            margin-top: 5px;
+            z-index: 100;
+            display: none;
+        }
+
+        .suggestion-item {
+            padding: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .suggestion-item:hover {
+            background: #f8f9fa;
+            transform: translateX(5px);
+        }
+
+        .search-footer {
+            text-align: center;
+            color: #7f8c8d;
+            margin-top: 1.5rem;
+        }
+
+        /* Category Sections */
+        .sections-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .section-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .section-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-card h2 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .section-card p {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .search-row {
+                flex-direction: column;
+            }
+            
+            .car-selector {
+                width: 100%;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+            }
+            
+            .navbar {
+                padding: 1rem;
+            }
+        }
+            </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-links">
+            <a href="index.html" class="nav-logo">AutoCare</a>
+            <a href="index.html">Home</a>
+            <a href="query.html">Query</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <div class="profile-section">
+            <div class="profile">JD</div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Search Section -->
+        <div class="search-container">
+            <h2 class="search-header">What are you looking for?</h2>
+            
+            <div class="search-row">
+                <select class="car-selector" id="carSelector">
+                    <option value="">Select Your Vehicle</option>
+                    <option value="toyota">Toyota Camry</option>
+                    <option value="honda">Honda Civic</option>
+                    <option value="ford">Ford Mustang</option>
+                    <option value="bmw">BMW 3 Series</option>
+                    <option value="mercedes">Mercedes C-Class</option>
+                </select>
+                
+                <div class="search-input-container">
+                    <input type="text" id="searchInput" placeholder="Search car problems...">
+                    <div id="suggestions"></div>
+                </div>
+            </div>
+
+            <p class="search-footer">Start by selecting your car model above</p>
+        </div>
+
+        <!-- Category Sections -->
+        <div class="sections-container">
+            <div class="section-card" data-page="engine.html">
+                <div class="card-icon">⚙️</div>
+                <h2>Engine Issues</h2>
+                <p>Common problems and solutions for engine performance</p>
+            </div>
+            <div class="section-card" data-page="brake.html">
+                <div class="card-icon">🛑</div>
+                <h2>Brake System</h2>
+                <p>Diagnose and fix braking system issues</p>
+            </div>
+            <div class="section-card" data-page="transmission.html">
+                <div class="card-icon">🔧</div>
+                <h2>Transmission</h2>
+                <p>Solutions for gear shifting and transmission problems</p>
+            </div>
+        </div>
+    </div>
+
+    <script >
+        // Search Suggestions
+            const problems = [
+                "Engine won't start",
+                "Overheating issues",
+                "Check engine light on",
+                "Brake squeaking noise",
+                "Spongy brake pedal",
+                "Transmission slipping",
+                "Gear shifting problems",
+                "Oil leakage",
+                "Exhaust smoke",
+                "Battery not charging",
+                "Strange engine noises",
+                "Poor fuel economy",
+                "Electrical system failure",
+                "ABS warning light",
+                "Clutch issues"
+            ];
+
+            const searchInput = document.getElementById('searchInput');
+            const suggestions = document.getElementById('suggestions');
+            const carSelector = document.getElementById('carSelector');
+
+            // Search functionality
+            searchInput.addEventListener('input', function() {
+                const input = this.value.toLowerCase();
+                suggestions.innerHTML = '';
+                
+                if (input.length > 0) {
+                    const filtered = problems.filter(problem => 
+                        problem.toLowerCase().includes(input)
+                    );
+                    
+                    filtered.forEach(problem => {
+                        const div = document.createElement('div');
+                        div.className = 'suggestion-item';
+                        div.textContent = problem;
+                        div.onclick = () => {
+                            searchInput.value = problem;
+                            suggestions.style.display = 'none';
+                        };
+                        suggestions.appendChild(div);
+                    });
+                    
+                    suggestions.style.display = 'block';
+                } else {
+                    suggestions.style.display = 'none';
+                }
+            });
+
+            // Category card clicks
+            document.querySelectorAll('.section-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    window.location.href = card.dataset.page;
+                });
+            });
+
+            // Car selector change
+            carSelector.addEventListener('change', function() {
+                if (this.value) {
+                    localStorage.setItem('selectedCar', this.value);
+                }
+            });
+
+            // Initialize selected car
+            window.addEventListener('load', () => {
+                const savedCar = localStorage.getItem('selectedCar');
+                if (savedCar) {
+                    carSelector.value = savedCar;
+                }
+            });
+
+            // Close suggestions when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('.search-input-container')) {
+                    suggestions.style.display = 'none';
+                }
+            });
+    </script>
+</body>
+</html>
