@@ -455,7 +455,7 @@
             // Auto-redirect if already logged in
             window.addEventListener('load', () => {
                 const loggedInUser = localStorage.getItem('loggedInUser');
-                if (loggedInUser && window.location.pathname.endsWith('login.html')) {
+                if (loggedInUser && window.location.pathname.endsWith('https://web-app-sample-liard.vercel.app/index.html')) {
                     window.location.href = 'https://web-app-sample-liard.vercel.app/index.html';
                 }
             });
