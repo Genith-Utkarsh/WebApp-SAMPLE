@@ -8,6 +8,17 @@
   ],
   "routes": [
     {
+      "src": "/home",
+      "dest": "app.py"
+    },
+    {
+      "src": "/static/(.*)",
+      "status": 404,
+      "headers": {
+        "Location": "/"
+      }
+    },
+    {
       "src": "/(.*)",
       "dest": "app.py"
     }
