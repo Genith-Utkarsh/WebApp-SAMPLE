@@ -425,7 +425,7 @@
                 users.push(newUser);
                 localStorage.setItem('users', JSON.stringify(users));
                 localStorage.setItem('loggedInUser', JSON.stringify(newUser));
-                window.location.href = 'index.html';
+                window.location.href = 'https://web-app-sample-liard.vercel.app/index.html';
             });
 
             // Login Handler
@@ -449,14 +449,14 @@
                 }
 
                 localStorage.setItem('loggedInUser', JSON.stringify(user));
-                window.location.href = 'index.html';
+                window.location.href = 'https://web-app-sample-liard.vercel.app/index.html';
             });
 
             // Auto-redirect if already logged in
             window.addEventListener('load', () => {
                 const loggedInUser = localStorage.getItem('loggedInUser');
                 if (loggedInUser && window.location.pathname.endsWith('login.html')) {
-                    window.location.href = 'index.html';
+                    window.location.href = 'https://web-app-sample-liard.vercel.app/index.html';
                 }
             });
 
